@@ -1,0 +1,41 @@
+#Project 1
+Situation:
+	CPP Application
+	Cruise service provider, booking for that cruise, mininum requirements for service prociders(think) , passenger can book the tickets, my location is KOCHI
+	Kochi to laksha deeve  (cruise) 
+	No GUI, Only command line
+	Cruise id, 
+	dept city, time, arrival, arrival city time(24 hr format)
+	Accomodations:
+		Business rooms, 
+		Economy rooms, 
+		seating space
+	store the informations in a text file
+	(Should not be hard coded)
+	
+	give waiting number, (FIFO)
+	File format:
+		101
+		Kochi
+		24hrs
+		lakshadeve
+		6hrs
+		1 2 3 4 5
+		6 7 8 9 10 11 12 13 14 15
+		
+	Query based system
+	show cruise ids to select and search
+	s ->scheduling of the passenger (which cruise we want to schedule, accomodation, name, 
+	c-> cancel passenger, request the passenger name, cruise id, (print the status)
+	Nice user interface
+	P-> p means passenger status (passenger name, and print all the details of the passenger, if he is on cruise, print cruise info, if he is on waiting list, that information)
+	f-> cruise status (complete cruise status, visual representation of seating) (the program should take cruise id, and give its status)	
+	Passenger -> which seat he is in, which cruise he is in
+	schedule a passenger
+ 	Booked seats has to show in white (differentiate in the Cmd line itself
+ 	
+ 	
+ 	First show all cruise details 
+ 	and for each cruise, show in vishual representation of each classes
+ 	then show the queries, s, c, p, f
+ 	
