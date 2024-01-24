@@ -31,7 +31,14 @@ class Cruise{
         }
         bool isThisCruiseAvailable(){return isValid;}
         void display(){
-            cout<<id<<endl<<deptCity<<endl;
+            cout<<"Cruise details:"<<endl;
+            cout<<"id: "<<id<<endl;
+            cout<<"deptCity: "<<deptCity<<endl;
+            cout<<"deptTime: "<<deptTime<<endl;
+            cout<<"arrivalCity: "<<arrivalCity<<endl;
+            cout<<"arrivalTime: "<<arrivalTime<<endl;
+            this->accomodations.display();
+            this->waitingList.display();
         }
 };
 #endif

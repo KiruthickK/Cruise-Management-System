@@ -21,5 +21,19 @@ class Accomodations{
             this->EconomicClass = accom.EconomicClass;
             this->seatingPlace = accom.seatingPlace;
         }
+        void display(){
+            cout<<"Business seat details: ";
+            for(int i: BusinessClass)cout<<i<<" ";
+            cout<<endl;
+            cout<<"Economic seat details: ";
+            for(int i: EconomicClass)cout<<i<<" ";
+            cout<<endl;
+            cout<<"seating details: ";
+            for(int i: seatingPlace)cout<<i<<" ";
+            cout<<endl;
+            cout<<"Seat Allocation details: ";
+            for(bool i: totalSeatsAllocation)cout<<i<<" ";
+            cout<<endl;
+        }
 };
 #endif

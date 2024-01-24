@@ -98,8 +98,7 @@ public:
                     vector<int> BusinessClass;
                     vector<int> EconomicClass;
                     vector<int> seatingPlace;
-                    vector<bool> BusinessAllocation;
-                    vector<bool> EconomicAllocation;
+                    vector<bool> totalAllocation;
                     string word;
                     // Read each word from the stringstream
                     while (iss >> word) {
@@ -110,18 +109,52 @@ public:
                     while (iss >> word) {
                         EconomicClass.push_back(stoi(word));
                     }
-                    iss.str(lines[6]);
+                    iss.str(lines[7]);
                     iss.clear();
                     while (iss >> word) {
-                        EconomicClass.push_back(stoi(word));
+                        seatingPlace.push_back(stoi(word));
                     }
-                    // Accomodations accom()
-                    // dummyRes.setAccomodations()
+                    iss.str(lines[8]);
+                    iss.clear();
+                    while (iss >> word) {
+                        if(word[0] == 'T'){
+                            totalAllocation.push_back(true);
+                        }else{
+                            totalAllocation.push_back(false);
+                        }
+                    }
+                    Accomodations accom(BusinessClass, EconomicClass, seatingPlace, totalAllocation);
+                    dummyRes.setAccomodations(accom);
+                    WaitingList w;
+                    if(lines[9][0] != '0'){
+                        iss.str(lines[9]);
+                        iss.clear();
+                        bool flag = false;
+                        while (iss >> word) {
+                            if(!flag){
+                                flag = true;
+                            }else{
+                                w.addBusinessWaitingList(stoi(word));
+                            }
+                        }
+                    }
+                    if(lines[10][0] != '0'){
+                        iss.str(lines[10]);
+                        iss.clear();
+                        bool flag = false;
+                        while (iss >> word) {
+                            if(!flag){
+                                flag = true;
+                            }else{
+                                w.addEconomicWaitingList(stoi(word));
+                            }
+                        }
+                    }
+                    dummyRes.setWaitingList(w);
                     return dummyRes;
 
                 }
                 file_path = file_path.substr(0, file_path.size() - 4);
-                // Open the file
                 ifstream file(file_path);
 
             }

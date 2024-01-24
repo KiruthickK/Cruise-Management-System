@@ -15,13 +15,17 @@ Situation:
 	
 	give waiting number, (FIFO)
 	File format:
-		101
-		Kochi
-		24hrs
-		lakshadeve
-		6hrs
-		1 2 3 4 5
-		6 7 8 9 10 11 12 13 14 15
+		101 //cruise id
+		Kochi //depature
+		24hrs	//depature time
+		lakshadeve	//arrival place
+		6hrs	// arrival time
+		1 2 3 4 5 //business seats
+		6 7 8 9 10 11 12 13 14 15 //economic seats
+		101 -1 -1 -1 -1 -1 -1 -1 -1 -1 //seating places of passengers
+		T F F F F F F F F F // seat statuses
+		0	//waiting list details , first the total business waiting list passenger details, then passenger details (FIFO)
+		0	//same above, except the fact it is for economic class
 		
 	Query based system
 	show cruise ids to select and search
