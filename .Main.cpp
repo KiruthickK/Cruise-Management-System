@@ -10,5 +10,7 @@ int main() {
     for(string s:res){
         cout<<s<<endl;
     }
+    Cruise c = m.getCruiseDetails(2);
+    c.display();
     return 0;
 }
