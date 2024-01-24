@@ -31,6 +31,10 @@ class Cruise{
         }
         bool isThisCruiseAvailable(){return isValid;}
         void display(){
+            if(!isValid){
+                cout<<"The provided id is wrong!"<<endl;
+                return;
+            }
             cout<<"Cruise details:"<<endl;
             cout<<"id: "<<id<<endl;
             cout<<"deptCity: "<<deptCity<<endl;

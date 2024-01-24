@@ -10,9 +10,9 @@ using namespace fs;
 class FileManager
 {
 public:
-    vector<string> getCruiseIds()
+    vector<int> getCruiseIds()
     {
-        vector<string> res;
+        vector<int> res;
         if (!exists(CruisePath) || !is_directory(CruisePath))
         {
             cerr << "Error: Folder does not exist or is not a directory." << endl;
@@ -27,14 +27,14 @@ public:
                 file_path = file_path.substr(0, file_path.size() - 4);
                 // Open the file
                 ifstream file(file_path);
-                res.push_back(file_path);
+                res.push_back(stoi(file_path));
             }
         }
         return res;
     }
-    vector<string> getUserIds()
+    vector<int> getUserIds()
     {
-        vector<string> res;
+        vector<int> res;
         if (!exists(UserPath) || !is_directory(UserPath))
         {
             cerr << "Error: Folder does not exist or is not a directory." << endl;
@@ -49,7 +49,7 @@ public:
                 file_path = file_path.substr(0, file_path.size() - 4);
                 // Open the file
                 ifstream file(file_path);
-                res.push_back(file_path);
+                res.push_back(stoi(file_path));
             }
         }
         return res;
