@@ -24,7 +24,14 @@ class Accomodations{
         int getStartOfEconomicClass(){
             return BusinessClass.size();
         }
+        void bookSeatForCruise(int seatNumber, int userId){
+            seatingPlace[seatNumber-1] = userId;
+            totalSeatsAllocation[seatNumber - 1] = true;
+        }
         vector<bool> getTotalSeatsAllocation(){return totalSeatsAllocation;}
+        vector<int> getBusinessClass(){ return BusinessClass;}
+        vector<int> getEconomicClass(){ return EconomicClass;}
+        vector<int> getSeatingAllocation(){ return seatingPlace;}
         void display(){
             cout<<"Business seat details: ";
             for(int i: BusinessClass)cout<<i<<" ";
@@ -38,6 +45,12 @@ class Accomodations{
             cout<<"Seat Allocation details: ";
             for(bool i: totalSeatsAllocation)cout<<i<<" ";
             cout<<endl;
+        }
+        bool checkSeatAvailability(int seatNumber){
+            if(seatNumber<1 || seatNumber >= totalSeatsAllocation.size()){
+                return false;
+            }
+            return totalSeatsAllocation[seatNumber - 1];
         }
 };
 #endif

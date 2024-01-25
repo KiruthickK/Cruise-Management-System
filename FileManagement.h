@@ -196,15 +196,85 @@ public:
         file.close();
         string name = lines[0];
         int cruiseId = stoi(lines[1]);
-        result = User(id, name, cruiseId);
+        char category = lines[2][0];
+        result = User(id, name, cruiseId, category);
         return result;
     }
     // updateuserDetails()
     void updateCruiseDetails(Cruise cur)
     {
+        // Specify the file name
+        const string filename = CruisePath + to_string(cur.getCruiseId()) + ".txt";
+        // Open the file for writing
+        ofstream outputFile(filename);
+        // Check if the file is opened successfully
+        if (!outputFile.is_open())
+        {
+            cerr << "Error opening the file." << endl;
+            return;
+        }
+        // Write content to the file
+        outputFile << cur.getCruiseId()<<endl;
+        outputFile << cur.getDeptCity()<<endl;
+        outputFile << cur.getDeptTime()<<endl;
+        outputFile << cur.getArrivalCity()<<endl;
+        outputFile << cur.getArrivalTime()<<endl;
+        vector<int> BusinessClass = cur.getBusinessClassDetails();
+        vector<int> EconomicClass = cur.getEconomicClassDetails();
+        vector<int> seatingPlaces = cur.getSeatingAllocation();
+        vector<bool> totalSeatsAllocation = cur.getTotalSeatsAllocation();
+        for(int i: BusinessClass){
+            outputFile<<i<<" ";
+        }
+        outputFile<<endl;
+        for(int i: EconomicClass){
+            outputFile<<i<<" ";
+        }
+        outputFile<<endl;
+        for(int i: seatingPlaces){
+            outputFile<<i<<" ";
+        }
+        outputFile<<endl;
+        for(bool i: totalSeatsAllocation){
+            if(i){
+                outputFile<<"T"<<" ";
+            }
+            else{
+                outputFile<<"F"<<" ";
+            }
+        }
+        outputFile<<endl;
+        outputFile<<cur.totalBusinessClassWaitingList()<<endl;
+        outputFile<<cur.totalEconomicClassWaitingList();
+        // TODO
+        /**
+         * Get the vectors from the class and modify it and upload it
+        */
+        // Close the file
+        outputFile.close();
+        // cout << " user created successfully." << endl;
 
     }
-    void updateSheduleOnCruiseForPassenger(int id){
+    void updatePassengerDetails(int id, User cur){
+        const string filename = UserPath + to_string(id) + ".txt";
+        // Open the file for writing
+        ofstream outputFile(filename);
+        // Check if the file is opened successfully
+        if (!outputFile.is_open())
+        {
+            cerr << "Error opening the file." << endl;
+            return;
+        }
+        // Write content to the file
+        outputFile<<cur.getUserName()<<endl;
+        outputFile<<cur.getCruiseId()<<endl;
+        switch(cur.getSeatingClass()){
+            case SeatingClass::BUSINESS:
+                outputFile<<"B";
+                break;
+            case SeatingClass::ECONOMIC:
+                outputFile<<"E";
+        }
         
     }
     // createUser()

@@ -13,6 +13,8 @@ class WaitingList{
             this->BusinessPassengers = BusinessPassengers;
             this->EconomicPassengers = EconomicPassengers;
         }
+        int totalBusinessClassWaitingList(){return BusinessPassengers.size();}
+        int totalEconomicClassWaitingList(){return EconomicPassengers.size();}
         void addBusinessWaitingList(int passengerId){
             BusinessPassengers.push(passengerId);
         }

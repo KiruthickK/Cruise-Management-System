@@ -23,6 +23,7 @@ class Cruise{
             this->arrivalCity = arrivalCity;
             this->arrivalTime = arrivalTime;
         }
+        
         void setAccomodations(Accomodations accom){
             this->accomodations = Accomodations(accom);
         }
@@ -44,6 +45,9 @@ class Cruise{
             this->accomodations.display();
             this->waitingList.display();
         }
+        void bookASeat(int seatNum, int userId){
+            accomodations.bookSeatForCruise(seatNum, userId);
+        }
         void displayAvailableSeats(){
             cout<<"Available seats information on the cruise with id: "<<cuserid<<endl;
             int startOfEconomicClass = accomodations.getStartOfEconomicClass();
@@ -59,5 +63,18 @@ class Cruise{
                 index++;
             }
         }
+        int getEconomicSeatingStarting(){return accomodations.getStartOfEconomicClass();};
+        bool checkSeatAvailability(int seatNumber){return accomodations.checkSeatAvailability(seatNumber);}
+        int getCruiseId(){return id;}
+        string getDeptCity(){return deptCity;}
+        string getDeptTime(){return deptTime;}
+        string getArrivalCity(){return arrivalCity;}
+        string getArrivalTime(){return arrivalTime;}
+        vector<int> getBusinessClassDetails(){return accomodations.getBusinessClass();}
+        vector<int> getEconomicClassDetails(){return accomodations.getEconomicClass();}
+        vector<bool> getTotalSeatsAllocation(){return accomodations.getTotalSeatsAllocation();}
+        vector<int> getSeatingAllocation(){return accomodations.getSeatingAllocation();}
+        int totalBusinessClassWaitingList(){return waitingList.totalBusinessClassWaitingList();}
+        int totalEconomicClassWaitingList(){return waitingList.totalEconomicClassWaitingList();}
 };
 #endif
