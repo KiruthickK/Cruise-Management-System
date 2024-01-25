@@ -1,22 +1,14 @@
 #include <iostream>
-#include <fstream>
-
+#include "Basics.h"
 int main() {
-    // Specify the file name
-    const std::string filename = "Cruise/output.txt";
-    // Open the file for writing
-    std::ofstream outputFile(filename);
-
-    // Check if the file is opened successfully
-    if (!outputFile.is_open()) {
-        std::cerr << "Error opening the file." << std::endl;
-        return 1;
-    }
-    // Write content to the file
-    outputFile << "Hello, this is a line of text.\n";
-    outputFile << "This is another line of text.\n";
-    // Close the file
-    outputFile.close();
-    std::cout << "File has been written successfully." << std::endl;
+    queue<int> qu;
+    qu.push(10);
+    cout<<qu.back();
+    cout<<endl;
+    qu.push(11);
+    qu.push(12);
+    qu.pop();
+    cout<<qu.back();
+    cout<<endl;
     return 0;
 }

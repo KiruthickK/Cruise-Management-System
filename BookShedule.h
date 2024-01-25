@@ -12,25 +12,29 @@ void bookShedule(FileManager m){
     vector<int> cruises = m.getCruiseIds();
     for(int user: users){
         if(user == id){
+            User user = m.getUserDetails(id);
             CaseWhenCruiseIdIsWrong:
             cout<<"Enter the Cruise(id) you want to shedule:";
             cin>>id;
-            bool flag = false;
             for(int cruise: cruises){
                 if(cruise == id){
-                    flag = true;
                     Cruise cur = m.getCruiseDetails(cruise);
-                    // TODO
+                    if(user.isUserHasFreeFromPreviousScheduleOnCruises()){
+                        cout<<"Please enter an available seat to book your schedule"<<endl;
+                        cur.displayAvailableSeats();
+                    }else{
+                        cout<<"Sorry this user has active schedule on a Cruise!\nCruise Details:"<<endl;
+                        Cruise userBookedCruise = m.getCruiseDetails(user.getCruiseId());
+                        userBookedCruise.display();
+                    }
                     return;
                 }
             }
-            if(flag == false){
-                cout<<"You may have entered a wrong cruise id, if you want to retry enter 1\n";
-                id = -1;
-                cin>>id;
-                if(id == 1){
-                    goto CaseWhenCruiseIdIsWrong;
-                }
+            cout<<"You may have entered a wrong cruise id, if you want to retry enter 1\nFor exit enter any other number than 1\n";
+            id = -1;
+            cin>>id;
+            if(id == 1){
+                goto CaseWhenCruiseIdIsWrong;
             }
             return;
         }

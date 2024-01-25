@@ -26,7 +26,11 @@ Situation:
 		T F F F F F F F F F // seat statuses
 		0	//waiting list details , first the total business waiting list passenger details, then passenger details (FIFO)
 		0	//same above, except the fact it is for economic class
-		
+	User File format:
+		name
+		cruise id (if not in a cruise or not booked, then -1)
+		Class B - Business , E - Economy
+		Status C- Confirmed, W - Waiting list
 	Query based system
 	show cruise ids to select and search
 	s ->scheduling of the passenger (which cruise we want to schedule, accomodation, name, 

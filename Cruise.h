@@ -44,5 +44,20 @@ class Cruise{
             this->accomodations.display();
             this->waitingList.display();
         }
+        void displayAvailableSeats(){
+            cout<<"Available seats information on the cruise with id: "<<cuserid<<endl;
+            int startOfEconomicClass = accomodations.getStartOfEconomicClass();
+            cout<<endl;
+            cout<<"Note: A - available, B - Booked"<<endl;
+            cout<<endl;
+            int index = 0;
+            for(bool status: accomodations.getTotalSeatsAllocation()){
+                if(index == startOfEconomicClass){
+                    cout<<endl<<"Economic Class:"<<endl;
+                }
+                cout<<"Seat Number: "+to_string(index + 1)<<(status?(" - B"): (" - A"))<<((index == startOfEconomicClass - 1)?". ":",");
+                index++;
+            }
+        }
 };
 #endif

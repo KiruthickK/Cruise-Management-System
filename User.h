@@ -20,5 +20,15 @@ class User{
             this->seatNumber = seatNumber;
             this->status = status;
         }
+        User(int userId, string name, int cruiseId){
+            this->userId = userId;
+            this->name = name;
+            this->cruiseId = cruiseId;
+            this->seatNumber = seatNumber;
+            this->status = status;
+        }
+        User(){}
+        bool isUserHasFreeFromPreviousScheduleOnCruises(){return cruiseId == -1;}
+        int getCruiseId(){return cruiseId;}
 
 };

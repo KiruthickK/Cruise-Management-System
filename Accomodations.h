@@ -21,6 +21,10 @@ class Accomodations{
             this->EconomicClass = accom.EconomicClass;
             this->seatingPlace = accom.seatingPlace;
         }
+        int getStartOfEconomicClass(){
+            return BusinessClass.size();
+        }
+        vector<bool> getTotalSeatsAllocation(){return totalSeatsAllocation;}
         void display(){
             cout<<"Business seat details: ";
             for(int i: BusinessClass)cout<<i<<" ";
