@@ -163,8 +163,44 @@ public:
     }
     // getUserDetails(int id)
     // updateuserDetails()
-    // updateCruiseDetails()
+    void updateCruiseDetails(Cruise cur){
+        
+    }
     // createUser()
+    void createUser(int id, string name){
+        // Specify the file name
+        const string filename = UserPath + to_string(id);
+        // Open the file for writing
+        ofstream outputFile(filename);
+        // Check if the file is opened successfully
+        if (!outputFile.is_open()) {
+            cerr << "Error opening the file." << endl;
+            return;
+        }
+        // Write content to the file
+        outputFile << name;
+        outputFile << -1;
+        // Close the file
+        outputFile.close();
+        cout << "New user created successfully." <<endl;
+    }
+    void createUser(int id, string name, int cruiseId){
+        // Specify the file name
+        const string filename = UserPath + to_string(id);
+        // Open the file for writing
+        ofstream outputFile(filename);
+        // Check if the file is opened successfully
+        if (!outputFile.is_open()) {
+            cerr << "Error opening the file." << endl;
+            return;
+        }
+        // Write content to the file
+        outputFile << name;
+        outputFile << cruiseId;
+        // Close the file
+        outputFile.close();
+        cout << "New user created successfully." <<endl;
+    }
     // createCruise()
 };
 #endif

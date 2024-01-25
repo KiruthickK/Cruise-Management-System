@@ -1,19 +1,22 @@
 #include <iostream>
-#include <sstream>
-#include <string>
+#include <fstream>
 
 int main() {
-    // Example string
-    std::string input_string = "6 7 8 9 10 11 12 13 14 15";
+    // Specify the file name
+    const std::string filename = "Cruise/output.txt";
+    // Open the file for writing
+    std::ofstream outputFile(filename);
 
-    // Use std::istringstream to split the string
-    std::istringstream iss(input_string);
-    std::string word;
-
-    // Read each word from the stringstream
-    while (iss >> word) {
-        std::cout << word << std::endl;
+    // Check if the file is opened successfully
+    if (!outputFile.is_open()) {
+        std::cerr << "Error opening the file." << std::endl;
+        return 1;
     }
-
+    // Write content to the file
+    outputFile << "Hello, this is a line of text.\n";
+    outputFile << "This is another line of text.\n";
+    // Close the file
+    outputFile.close();
+    std::cout << "File has been written successfully." << std::endl;
     return 0;
 }
