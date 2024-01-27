@@ -8,6 +8,7 @@ class User{
         int seatNumber;
         SeatingClass classType;
         TicketStatus status;
+        bool isValidUser = false;
     public:
         User(int userId, string name, int cruiseId, TicketStatus status){
             this->userId = userId;
@@ -15,6 +16,7 @@ class User{
             this->cruiseId = cruiseId;
             this->seatNumber = seatNumber;
             this->status = status;
+            isValidUser = true;
         }
         User(int userId, string name, int cruiseId, char isBusinessClass){
             this->userId = userId;
@@ -29,6 +31,7 @@ class User{
             this->cruiseId = cruiseId;
             this->seatNumber = seatNumber;
             this->status = status;
+            isValidUser = true;
         }
         User(){}
         void bookSeats(int cruiseId, SeatingClass classType){
@@ -47,6 +50,7 @@ class User{
                 this->classType = SeatingClass::IDLE;
             }
         }
+        bool isUserValid(){return isValidUser;}
         void setCruiseId(int id){
             this->cruiseId = -1;
         }

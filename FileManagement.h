@@ -63,7 +63,7 @@ public:
         targetFile += ".txt";
         if (!exists(CruisePath) || !is_directory(CruisePath))
         {
-            cerr << "Error: Folder does not exist or is not a directory." << endl;
+            cerr << "No such cruise exists!" << endl;
             return dummyRes;
         }
         // top
@@ -176,7 +176,7 @@ public:
         targetFile += ".txt";
         if (!exists(CruisePath) || !is_directory(CruisePath))
         {
-            cerr << "Error: Folder does not exist or is not a directory." << endl;
+            cerr << "User does not exist!" << endl;
             return result;
         }
         // top
@@ -210,7 +210,7 @@ public:
         // Check if the file is opened successfully
         if (!outputFile.is_open())
         {
-            cerr << "Error opening the file." << endl;
+            cerr << "Cruise is not found!" << endl;
             return;
         }
         // Write content to the file
@@ -248,7 +248,7 @@ public:
         outputFile<<cur.totalEconomicClassWaitingList();
         // TODO
         /**
-         * Get the vectors from the class and modify it and upload it
+         * Get the vectors from the class and modify it and upload it --Done
         */
         // Close the file
         outputFile.close();
@@ -257,6 +257,10 @@ public:
     }
     void cancelPassengerSchedule(int passengerId, int cruiseId){
         User cur = getUserDetails(passengerId);
+        if(!cur.isUserValid()){
+            cout<<"The provided user does not exist!"<<endl;
+            return;
+        }
         if(cur.getCruiseId() != cruiseId){
             if(cur.getCruiseId() == -1){
                 cout<<"The passenger has no active cruise travels schedulded!"<<endl;
@@ -339,7 +343,20 @@ public:
         cout << "New user created successfully." << endl;
     }
     void showDetailsOfPassenger(int id){
-        // TODO
+        User user = getUserDetails(id);
+        if(!user.isUserValid()){
+            cout<<"User with given user id, does not exist!"<<endl;
+            return;
+        }
+        Cruise cruise = getCruiseDetails(user.getCruiseId());
+        cout<<"User Details: "<<user.getUserName()<<endl;
+        if(user.getCruiseId() == -1){
+            cout<<"User have not schedulded a travel with Cruise!"<<endl;
+            return;
+        }
+        cout<<"User Has Schedulded a cruise with cruise id: "<<user.getCruiseId();
+        cout<<"User's Seat Number: "<<cruise.getPassengerSeatNumber(id)<<endl;
+        cout<<"User's seating class: "<<((cruise.getEconomicSeatingStarting() <= cruise.getPassengerSeatNumber(id))?"Economic":"Business")<<endl;
     }
 };
 #endif
