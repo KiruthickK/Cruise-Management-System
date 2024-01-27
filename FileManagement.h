@@ -255,6 +255,26 @@ public:
         // cout << " user created successfully." << endl;
 
     }
+    void cancelPassengerSchedule(int passengerId, int cruiseId){
+        User cur = getUserDetails(passengerId);
+        if(cur.getCruiseId() != cruiseId){
+            if(cur.getCruiseId() == -1){
+                cout<<"The passenger has no active cruise travels schedulded!"<<endl;
+            }else{
+                cout<<"The passenger has been schedulded in a different cruise ship! Operation cancelled!"<<endl;
+            }
+            return;
+        }
+        Cruise cruse = getCruiseDetails(cruiseId);
+        int passengerSeat = cruse.getPassengerSeatNumber(passengerId);
+        cruse.cancelSeatSchedule(passengerSeat);
+        cur.setCruiseId(-1);
+        cur.setClass('N');
+        updateCruiseDetails(cruse);
+        updatePassengerDetails(passengerId, cur);
+        cout<<"Passenger schedule cancelled!"<<endl;
+        
+    }
     void updatePassengerDetails(int id, User cur){
         const string filename = UserPath + to_string(id) + ".txt";
         // Open the file for writing
@@ -274,6 +294,8 @@ public:
                 break;
             case SeatingClass::ECONOMIC:
                 outputFile<<"E";
+            case SeatingClass::IDLE:
+                outputFile<<"N";
         }
         
     }
@@ -316,6 +338,8 @@ public:
         outputFile.close();
         cout << "New user created successfully." << endl;
     }
-    // createCruise()
+    void showDetailsOfPassenger(int id){
+        // TODO
+    }
 };
 #endif

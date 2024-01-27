@@ -23,12 +23,17 @@ class Cruise{
             this->arrivalCity = arrivalCity;
             this->arrivalTime = arrivalTime;
         }
-        
+        void cancelSeatSchedule(int seatNumber){
+            accomodations.cancelSeatSchedule(seatNumber);
+        }
         void setAccomodations(Accomodations accom){
             this->accomodations = Accomodations(accom);
         }
         void setWaitingList(WaitingList waitingList){
             this->waitingList = WaitingList(waitingList);
+        }
+        int getPassengerSeatNumber(int passengerId){
+            return accomodations.getPassengerSeatNumber(passengerId);
         }
         bool isThisCruiseAvailable(){return isValid;}
         void display(){

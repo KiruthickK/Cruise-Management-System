@@ -141,3 +141,21 @@ CaseWhenCruiseIdIsWrong2:
     cout << "Cruise with Entered Cruise Id not found! Please try again!" << endl;
     goto CaseWhenCruiseIdIsWrong2;
 }
+
+void cancelSheduleOfPassenger(FileManager m){
+    int id;
+    int cruiseId;
+    cout<<"Enter the passenger id: ";
+    cin>>id;
+    cout<<"Enter the cruise id for confirmation: ";
+    cin>>cruiseId;
+    m.cancelPassengerSchedule(id, cruiseId);
+
+}
+
+void showPassengerStatus(FileManager m){
+    int id;
+    cout<<"Enter the passenger id: ";
+    cin>>id;
+    m.showDetailsOfPassenger(id);
+}

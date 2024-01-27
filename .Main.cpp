@@ -23,8 +23,10 @@ int main() {
                 bookShedule(m);
                 break;
             case 2:
+                cancelSheduleOfPassenger(m);
                 break;
             case 3:
+                showPassengerStatus(m);
                 break;
             case 4:
             {

@@ -24,6 +24,19 @@ class Accomodations{
         int getStartOfEconomicClass(){
             return BusinessClass.size();
         }
+        int getPassengerSeatNumber(int passengerId){
+            int res = -1;
+            for(int i=0;i<seatingPlace.size();i++){
+                if(seatingPlace[i] == passengerId){
+                    return i;
+                }
+            }
+            return res;
+        }
+        void cancelSeatSchedule(int seatNo){
+            seatingPlace[seatNo] = -1;
+            totalSeatsAllocation[seatNo] = false;
+        }
         void bookSeatForCruise(int seatNumber, int userId){
             seatingPlace[seatNumber-1] = userId;
             totalSeatsAllocation[seatNumber - 1] = true;

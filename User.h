@@ -47,6 +47,9 @@ class User{
                 this->classType = SeatingClass::IDLE;
             }
         }
+        void setCruiseId(int id){
+            this->cruiseId = -1;
+        }
 
         bool isUserHasFreeFromPreviousScheduleOnCruises(){return cruiseId == -1;}
         int getCruiseId(){return cruiseId;}
