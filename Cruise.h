@@ -1,8 +1,6 @@
 #ifndef CRUISEDECLARATION
 #define CRUISEDECLARATION
 #include "Basics.h"
-#include "Accomodations.h"
-#include "WaitingList.h"
 
 class Cruise{
     int id;

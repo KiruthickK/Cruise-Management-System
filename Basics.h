@@ -1,6 +1,9 @@
 #ifndef BASICS
 #define BASICS
-#include <bits/stdc++.h>
+class Cruise;
+class Accomodations;
+class FileManager;
+class WaitingList;
 using namespace std;
 enum class TicketStatus{
     BOOKED,
@@ -12,4 +15,13 @@ enum class SeatingClass{
     ECONOMIC,
     IDLE
 };
+#include <bits/stdc++.h>
+#include <sys/ioctl.h>
+#include "Accomodations.h"
+#include "WaitingList.h"
+#include "Cruise.h"
+#include "GUIHelpers.h"
+#include "User.h"
+#include "FileManagement.h"
+#include "BookShedule.h"
 #endif

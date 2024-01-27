@@ -1,21 +1,23 @@
 #include <iostream>
-#include "Basics.h"
+#include <sys/ioctl.h>
+
+int getTerminalWidth() {
+    struct winsize w;
+    ioctl(0, TIOCGWINSZ, &w);
+    return w.ws_col;
+}
+
 int main() {
-        // Specify the file name
-        const string filename = "Demm";
-        // Open the file for writing
-        ofstream outputFile(filename);
-        // Check if the file is opened successfully
-        if (!outputFile.is_open())
-        {
-            cerr << "Error opening the file." << endl;
-            return 0;
-        }
-        // Write content to the file
-        outputFile << "nangfdyjme";
-        outputFile << "cruiseId";
-        // Close the file
-        outputFile.close();
-        cout << "New user created successfully." << endl;
+    int terminalWidth = getTerminalWidth();
+
+    std::cout << "Terminal width: " << terminalWidth << " columns" << std::endl;
+
+    // Print '=' symbols based on the terminal width
+    for (int i = 0; i < terminalWidth; ++i) {
+        std::cout << "=";
+    }
+
+    std::cout << std::endl;
+
     return 0;
 }

@@ -1,5 +1,5 @@
-#include "FileManagement.h"
-#include "Cruise.h"
+#ifndef BOOKSCHEDULE
+#define BOOKSCHEDULE
 #include "Basics.h"
 
 void bookShedule(FileManager m)
@@ -159,3 +159,4 @@ void showPassengerStatus(FileManager m){
     cin>>id;
     m.showDetailsOfPassenger(id);
 }
+#endif

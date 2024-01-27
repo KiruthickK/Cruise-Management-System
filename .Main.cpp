@@ -1,16 +1,18 @@
 #include "Basics.h"
-#include "FileManagement.h"
-#include "Cruise.h"
-#include "BookShedule.h"
 
 namespace fs = std::filesystem;
 
 int main() {
+    terminalWidth = getTerminalWidth();
     FileManager m;
+    linePrinter();
+    cout<<"Welcome to Cruise Ticket Booking System!"<<endl;
+    linePrinter();
     cout<<"Available Cruise ships are with their ids:"<<endl;
     vector<int> ships = m.getCruiseIds();
+    int index = 1;
     for(int ship: ships){
-        cout<<ship<<endl;
+        cout<<(index++)<<". "<<ship<<endl;
     }
     cout<<endl;
     while(1){

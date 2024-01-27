@@ -1,8 +1,6 @@
 #ifndef FILEMANAGEMENT
 #define FILEMANAGEMENT
 #include "Basics.h"
-#include "Cruise.h"
-#include "User.h"
 const string CruisePath = "Cruise/";
 const string UserPath = "Users/";
 namespace fs = filesystem;
