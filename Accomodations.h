@@ -46,17 +46,53 @@ class Accomodations{
         vector<int> getEconomicClass(){ return EconomicClass;}
         vector<int> getSeatingAllocation(){ return seatingPlace;}
         void display(){
-            cout<<"Business seat details: ";
-            for(int i: BusinessClass)cout<<i<<" ";
+            cout<<"Business seat details: "<<endl<<endl;
+            for(int i=1;i<= BusinessClass.size();i++){
+                cout<<"+-+-";
+            }
+            cout<<"+"<<endl;
+            for(int i:BusinessClass){
+                cout<<"| "<<i<<((i>9)?"":" ");
+            }
+            cout<<"|"<<endl;
+            for(int i=1;i<= BusinessClass.size();i++){
+                cout<<"+-+-";
+            }
+            cout<<"+"<<endl;
+            cout<<"Economic seat details: "<<endl<<endl;
+            for(int i=1;i<= EconomicClass.size();i++){
+                cout<<"+-+-";
+            }
+            cout<<"+"<<endl;
+            for(int i:EconomicClass){
+                cout<<"| "<<i<<((i>9)?"":" ");
+            }
+            cout<<"|"<<endl;
+            for(int i=1;i<= BusinessClass.size();i++){
+                cout<<"+-+-";
+            }
+            cout<<"+"<<endl;
+            singleLinePrinter();
+            cout<<"Seat Allocation details(B- Booked, F-Free): "<<endl<<endl;
+            cout<<"  1";
+
+            for(int i=1;i<=totalSeatsAllocation.size();++i){
+                if(i==1)continue;
+                cout<<((i>9)?"  ":"   ")<<i;
+            }
             cout<<endl;
-            cout<<"Economic seat details: ";
-            for(int i: EconomicClass)cout<<i<<" ";
-            cout<<endl;
-            cout<<"seating details: ";
-            for(int i: seatingPlace)cout<<i<<" ";
-            cout<<endl;
-            cout<<"Seat Allocation details: ";
-            for(bool i: totalSeatsAllocation)cout<<i<<" ";
+            for(int i=1;i<= totalSeatsAllocation.size();i++){
+                cout<<"+-+-";
+            }
+            cout<<"+"<<endl;
+            for(bool i:totalSeatsAllocation){
+                cout<<"| "<<(i?"B":"F")<<((i>9)?"":" ");
+            }
+            cout<<"|"<<endl;
+            for(int i=1;i<= totalSeatsAllocation.size();i++){
+                cout<<"+-+-";
+            }
+            cout<<"+"<<endl;
             cout<<endl;
         }
         bool checkSeatAvailability(int seatNumber){

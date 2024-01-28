@@ -283,7 +283,6 @@ public:
     void updatePassengerDetails(int id, User cur){
         const string filename = UserPath + to_string(id) + ".txt";
         // Open the file for writing
-        cout<<"Am i? "<<filename<<endl;
         ofstream outputFile(filename);
         // Check if the file is opened successfully
         if (!outputFile.is_open())
@@ -352,37 +351,39 @@ public:
             return;
         }
         Cruise cruise = getCruiseDetails(user.getCruiseId());
-        linePrinter();
-        cout<<"User Details:\nUser Name:"<<user.getUserName()<<endl;
+        cout<<"User Details:\nUser Name\t\t\t\t\t:"<<user.getUserName()<<endl;
         if(user.getCruiseId() == -1){
             cout<<"User have not schedulded a travel with Cruise!"<<endl;
             return;
         }
-        cout<<"User Has Schedulded a cruise with cruise id: "<<user.getCruiseId()<<endl;
-        cout<<"User's Seat Number: "<<cruise.getPassengerSeatNumber(id)<<endl;
+        cout<<"User Has Schedulded a cruise with cruise id\t: "<<user.getCruiseId()<<endl;
+        cout<<"User's Seat Number\t\t\t\t: "<<cruise.getPassengerSeatNumber(id)+1<<endl;
         bool isEconomic = cruise.getEconomicSeatingStarting() <= cruise.getPassengerSeatNumber(id);
-        cout<<"User's seating class: "<<((isEconomic)?"Economic":"Business")<<endl;
+        cout<<"User's seating class\t\t\t\t: "<<((isEconomic)?"Economic":"Business")<<endl;
         cout<<"Seat Position:"<<endl<<endl;
         // vector<bool> seatArrangements = cruise.getTotalSeatsAllocation();
         vector<int> seatArrangements = cruise.getSeatingAllocation();
         int start = (isEconomic)?(cruise.getEconomicSeatingStarting()+1):1;
         int end = (isEconomic)?(seatArrangements.size()):(cruise.getEconomicSeatingStarting());
+        cout<<" "<<((start>9)?"":" ")<<start;
         for(int i=start;i<=end;i++){
-            cout<<" "<<(i);
+            if(i == start)continue;
+            cout<<((i<10)?"   ":"  ")<<(i);
         }
         cout<<endl;
         for(int i=start;i<=end;i++){
-            cout<<"+-";
+            cout<<"+-+-";
         }
         cout<<"+"<<endl;
         for(int i=start;i<=end;i++){
-            cout<<"|"<<((seatArrangements[i-1] == id)?"X":"-");
+            cout<<"| "<<((seatArrangements[i-1] == id)?"X ":"- ");
         }
         cout<<"|"<<endl;
         for(int i=start;i<=end;i++){
-            cout<<"+-";
+            cout<<"+-+-";
         }
         cout<<"+"<<endl;
+        linePrinter();
     }
 };
 #endif

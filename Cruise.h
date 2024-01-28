@@ -41,13 +41,16 @@ class Cruise{
                 return;
             }
             cout<<"Cruise details:"<<endl;
-            cout<<"id: "<<id<<endl;
-            cout<<"Depature city: "<<deptCity<<endl;
-            cout<<"Depature time: "<<deptTime<<endl;
-            cout<<"Arrival City: "<<arrivalCity<<endl;
-            cout<<"Arrival Time: "<<arrivalTime<<endl;
+            cout<<"id\t\t: "<<id<<endl;
+            cout<<"Depature city\t: "<<deptCity<<endl;
+            cout<<"Depature time\t: "<<deptTime<<endl;
+            cout<<"Arrival City\t: "<<arrivalCity<<endl;
+            cout<<"Arrival Time\t: "<<arrivalTime<<endl;
+            singleLinePrinter();
             this->accomodations.display();
+            singleLinePrinter();
             this->waitingList.display();
+            linePrinter();
         }
         void bookASeat(int seatNum, int userId){
             accomodations.bookSeatForCruise(seatNum, userId);
@@ -57,40 +60,43 @@ class Cruise{
             cout<<"Cruise id: "<<cuserid<<endl;
             int startOfEconomicClass = accomodations.getStartOfEconomicClass();
             cout<<"Business Class Seating Information:"<<endl<<endl;
+            cout<<"  1";
             for(int i=1;i<=accomodations.getStartOfEconomicClass();i++){
-                cout<<" "<<(i);
+                if(i == 1)continue;
+                cout<<((i<10)?"   ":"  ")<<(i);
             }
             cout<<endl;
             for(int i=1;i<=accomodations.getStartOfEconomicClass();i++){
-                cout<<"+-";
+                cout<<"+-+-";
             }
             cout<<"+"<<endl;
             vector<bool> seatArrangements = accomodations.getTotalSeatsAllocation();
             for(int i=1,j=0;i<=accomodations.getStartOfEconomicClass();i++){
-                cout<<"|"<<(seatArrangements[j++]?"B":"-");
+                cout<<"| "<<(seatArrangements[j++]?"B":"-")<<" ";
             }
             cout<<"|"<<endl;
             for(int i=1;i<=accomodations.getStartOfEconomicClass();i++){
-                cout<<"+-";
+                cout<<"+-+-";
             }
             cout<<"+"<<endl;
             linePrinter();
             cout<<endl<<"Economic class seating information:"<<endl<<endl;
-
+            cout<<" "<<(((accomodations.getStartOfEconomicClass()+1)>9)?"":" ")<<(accomodations.getStartOfEconomicClass()+1);
             for(int i=accomodations.getStartOfEconomicClass()+1;i<=seatArrangements.size();i++){
-                cout<<" "<<(i);
+                if(i == accomodations.getStartOfEconomicClass()+1)continue;
+                cout<<((i<10)?"   ":"  ")<<(i);
             }
             cout<<endl;
             for(int i=1;i<=accomodations.getStartOfEconomicClass();i++){
-                cout<<"+-";
+                cout<<"+-+-";
             }
             cout<<"+"<<endl;
             for(int i=accomodations.getStartOfEconomicClass();i<seatArrangements.size();i++){
-                cout<<"|"<<(seatArrangements[i]?"B":"-");
+                cout<<"| "<<(seatArrangements[i]?"B":"-")<<" ";
             }
             cout<<"|"<<endl;
             for(int i=1;i<=accomodations.getStartOfEconomicClass();i++){
-                cout<<"+-";
+                cout<<"+-+-";
             }
             cout<<"+"<<endl;
             linePrinter();

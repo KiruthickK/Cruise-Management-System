@@ -16,6 +16,7 @@ CaseOfEnterUserIdAgain:
     {
         if (user == id)
         {
+            int userId = id;
             User user = m.getUserDetails(id);
         CaseWhenCruiseIdIsWrong:
             cout << "Enter the Cruise(id) you want to shedule:";
@@ -33,9 +34,11 @@ CaseOfEnterUserIdAgain:
                     }
                     else
                     {
-                        cout << "Sorry this user has active schedule on a Cruise!\nCruise Details:" << endl;
+                        cout << "Sorry this user has active schedule on a Cruise!" << endl;
+                        singleLinePrinter();
                         Cruise userBookedCruise = m.getCruiseDetails(user.getCruiseId());
-                        userBookedCruise.display();
+                        // userBookedCruise.display();
+                        m.showDetailsOfPassenger(userId);
                         return;
                     }
                     // jjjk

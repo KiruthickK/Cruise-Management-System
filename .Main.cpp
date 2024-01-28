@@ -16,23 +16,23 @@ int main() {
     }
     linePrinter();
     while(1){
-        cout<<"Enter 1 for Book a ticket and schedule a passenger,\nEnter 2 for cancel a schedule for a passenger,\nEnter 3 for displaying passenger status\nEnter 4 for displaying cruise status\nEnter 5 for show ids of all Cruise ships\nEnter 6 for exit"<<endl;
+        cout<<"Enter 'S' for Book a ticket and schedule a passenger,\nEnter 'C' for cancel a schedule for a passenger,\nEnter 'P' for displaying passenger status\nEnter 'F' for displaying cruise status\nEnter 'A' for show ids of all Cruise ships\nEnter 'E' for exit"<<endl;
         linePrinter();
         cout<<"Your choice:";
-        int choice;
+        char choice;
         cin>>choice;
         linePrinter();
         switch(choice){
-            case 1:
+            case 'S':
                 bookShedule(m);
                 break;
-            case 2:
+            case 'C':
                 cancelSheduleOfPassenger(m);
                 break;
-            case 3:
+            case 'P':
                 showPassengerStatus(m);
                 break;
-            case 4:
+            case 'F':
             {
                 cout<<"Enter the cruise id: ";
                 int id;
@@ -42,14 +42,18 @@ int main() {
                 ship.display();
                 break;
             }
-            case 5:
+            case 'A':
+                linePrinter();
                 cout<<"Available Cruise ships are with their ids:"<<endl;
+                index = 1;
                 for(int ship: ships){
-                    cout<<ship<<endl;
+                    cout<<(index++)<<". "<<ship<<endl;
                 }
+                linePrinter();
                 break;
-            case 6:
+            case 'E':
                 cout<<"Thank you for using us!"<<endl;
+                linePrinter();
                 return 0;
             default:
             cout<<"Enter a correct choice!"<<endl;

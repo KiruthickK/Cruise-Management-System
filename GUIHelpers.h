@@ -13,4 +13,10 @@ void linePrinter(){
     }
     cout<<endl;
 }
+void singleLinePrinter(){
+    for(int i=0;i<terminalWidth;i++){
+        cout<<"-";
+    }
+    cout<<endl;
+}
 #endif

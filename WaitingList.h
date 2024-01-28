@@ -59,7 +59,7 @@ class WaitingList{
             return res;
         }
         void display(){
-            cout<<"Waiting list details:"<<EconomicPassengers.size()<<" -> eco waiting and "<<BusinessPassengers.size()<<" -> busi waiting"<<endl;
+            cout<<"Waiting list details:\nTotal waiting passengers in Economic class:"<<EconomicPassengers.size()<<"\nTotal waiting passengers in Business class:"<<BusinessPassengers.size()<<endl;
         }
 };
 #endif

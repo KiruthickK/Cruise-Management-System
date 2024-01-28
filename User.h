@@ -55,8 +55,6 @@ class User{
             this->cruiseId = -1;
         }
         void display(){
-            cout<<endl;
-            cout<<"NAme:<<"<<name<<endl<<endl<<endl;
         }
         bool isUserHasFreeFromPreviousScheduleOnCruises(){return cruiseId == -1;}
         int getCruiseId(){return cruiseId;}
