@@ -257,6 +257,7 @@ public:
         User cur = getUserDetails(passengerId);
         if(!cur.isUserValid()){
             cout<<"The provided user does not exist!"<<endl;
+            linePrinter();
             return;
         }
         if(cur.getCruiseId() != cruiseId){
@@ -265,6 +266,7 @@ public:
             }else{
                 cout<<"The passenger has been schedulded in a different cruise ship! Operation cancelled!"<<endl;
             }
+            linePrinter();
             return;
         }
         Cruise cruse = getCruiseDetails(cruiseId);
@@ -275,11 +277,13 @@ public:
         updateCruiseDetails(cruse);
         updatePassengerDetails(passengerId, cur);
         cout<<"Passenger schedule cancelled!"<<endl;
+        linePrinter();
         
     }
     void updatePassengerDetails(int id, User cur){
         const string filename = UserPath + to_string(id) + ".txt";
         // Open the file for writing
+        cout<<"Am i? "<<filename<<endl;
         ofstream outputFile(filename);
         // Check if the file is opened successfully
         if (!outputFile.is_open())
@@ -344,17 +348,41 @@ public:
         User user = getUserDetails(id);
         if(!user.isUserValid()){
             cout<<"User with given user id, does not exist!"<<endl;
+            linePrinter();
             return;
         }
         Cruise cruise = getCruiseDetails(user.getCruiseId());
-        cout<<"User Details: "<<user.getUserName()<<endl;
+        linePrinter();
+        cout<<"User Details:\nUser Name:"<<user.getUserName()<<endl;
         if(user.getCruiseId() == -1){
             cout<<"User have not schedulded a travel with Cruise!"<<endl;
             return;
         }
-        cout<<"User Has Schedulded a cruise with cruise id: "<<user.getCruiseId();
+        cout<<"User Has Schedulded a cruise with cruise id: "<<user.getCruiseId()<<endl;
         cout<<"User's Seat Number: "<<cruise.getPassengerSeatNumber(id)<<endl;
-        cout<<"User's seating class: "<<((cruise.getEconomicSeatingStarting() <= cruise.getPassengerSeatNumber(id))?"Economic":"Business")<<endl;
+        bool isEconomic = cruise.getEconomicSeatingStarting() <= cruise.getPassengerSeatNumber(id);
+        cout<<"User's seating class: "<<((isEconomic)?"Economic":"Business")<<endl;
+        cout<<"Seat Position:"<<endl<<endl;
+        // vector<bool> seatArrangements = cruise.getTotalSeatsAllocation();
+        vector<int> seatArrangements = cruise.getSeatingAllocation();
+        int start = (isEconomic)?(cruise.getEconomicSeatingStarting()+1):1;
+        int end = (isEconomic)?(seatArrangements.size()):(cruise.getEconomicSeatingStarting());
+        for(int i=start;i<=end;i++){
+            cout<<" "<<(i);
+        }
+        cout<<endl;
+        for(int i=start;i<=end;i++){
+            cout<<"+-";
+        }
+        cout<<"+"<<endl;
+        for(int i=start;i<=end;i++){
+            cout<<"|"<<((seatArrangements[i-1] == id)?"X":"-");
+        }
+        cout<<"|"<<endl;
+        for(int i=start;i<=end;i++){
+            cout<<"+-";
+        }
+        cout<<"+"<<endl;
     }
 };
 #endif

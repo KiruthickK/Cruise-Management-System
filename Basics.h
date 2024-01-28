@@ -17,10 +17,10 @@ enum class SeatingClass{
 };
 #include <bits/stdc++.h>
 #include <sys/ioctl.h>
+#include "GUIHelpers.h"
 #include "Accomodations.h"
 #include "WaitingList.h"
 #include "Cruise.h"
-#include "GUIHelpers.h"
 #include "User.h"
 #include "FileManagement.h"
 #include "BookShedule.h"

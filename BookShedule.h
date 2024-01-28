@@ -8,15 +8,14 @@ void bookShedule(FileManager m)
 CaseOfEnterUserIdAgain:
     cout << "Enter the passenger id:";
     cin >> id;
+    int userId = id;
     string name;
     vector<int> users = m.getUserIds();
     vector<int> cruises = m.getCruiseIds();
-    int userId;
     for (int user : users)
     {
         if (user == id)
         {
-            userId = id;
             User user = m.getUserDetails(id);
         CaseWhenCruiseIdIsWrong:
             cout << "Enter the Cruise(id) you want to shedule:";
@@ -28,7 +27,8 @@ CaseOfEnterUserIdAgain:
                     Cruise cur = m.getCruiseDetails(cruise);
                     if (user.isUserHasFreeFromPreviousScheduleOnCruises())
                     {
-                        cout << "Please enter an available seat to book your schedule" << endl;
+                        linePrinter();
+                        cout << "Please Check out the available seats information below:" << endl;
                         cur.displayAvailableSeats();
                     }
                     else
@@ -45,6 +45,7 @@ CaseOfEnterUserIdAgain:
                          << "Enter the seat number to Book: ";
                     cin >> seatNumber;
                     cout << endl;
+                    linePrinter();
                     if (cur.checkSeatAvailability(seatNumber))
                     {
                         cout << "Please check your entered seat number!\nIt may be invalid or not available!" << endl;
@@ -54,6 +55,7 @@ CaseOfEnterUserIdAgain:
                         {
                             goto CaseWhenEnteredSeatNumberIsInvalid;
                         }
+                        linePrinter();
                         return;
                     }
                     cout << "Confirmation: \nYour chosen seat: " << seatNumber << endl
@@ -65,12 +67,14 @@ CaseOfEnterUserIdAgain:
                     m.updatePassengerDetails(userId, user);
                     cout<<endl;
                     cout << "Ticket Booked Successfully!" << endl;
+                    linePrinter();
                     return;
                 }
             }
             cout << "You may have entered a wrong cruise id, if you want to retry enter 1\nFor exit enter any other number than 1\n";
             id = -1;
             cin >> id;
+            linePrinter();
             if (id == 1)
             {
                 goto CaseWhenCruiseIdIsWrong;
@@ -83,6 +87,7 @@ CaseOfWrongOption:
     cout << "Creating new user\nEnter 1 for proceed and create new user\nEnter 2 for try again with existing user id\nEnter 3 for cancel the operation\nYour choice:";
     int choice;
     cin >> choice;
+    linePrinter();
     switch (choice)
     {
     case 1:
@@ -93,15 +98,19 @@ CaseOfWrongOption:
         return;
     default:
         cout << "Enter a valid choice!" << endl;
+        linePrinter();
         goto CaseOfWrongOption;
     }
     cout << "Enter your username: ";
     cin >> name;
+    linePrinter();
     m.createUser(id, name);
     User user = m.getUserDetails(id);
+    user.display();
 CaseWhenCruiseIdIsWrong2:
     cout << "Enter the Cruise Id:";
     cin >> id;
+    linePrinter();
     for (int cruise : cruises)
     {
         if (id == cruise)
@@ -115,11 +124,14 @@ CaseWhenCruiseIdIsWrong2:
                  << "Enter the seat number to Book: ";
             cin >> seatNumber;
             cout << endl;
+            linePrinter();
             if (cur.checkSeatAvailability(seatNumber))
             {
                 cout << "Please check your entered seat number!\nIt may be invalid or not available!" << endl;
+                linePrinter();
                 cout << "Enter 1 to try again\nEnter 2 to cancel\nYour choice: ";
                 cin >> seatNumber;
+                linePrinter();
                 if (seatNumber == 1)
                 {
                     goto CaseWhenEnteredSeatNumberIsInvalid2;
@@ -135,6 +147,7 @@ CaseWhenCruiseIdIsWrong2:
             m.updateCruiseDetails(cur);
             m.updatePassengerDetails(userId, user);
             cout << "Ticket Booked Successfully!" << endl;
+            linePrinter();
             return;
         }
     }
@@ -158,5 +171,6 @@ void showPassengerStatus(FileManager m){
     cout<<"Enter the passenger id: ";
     cin>>id;
     m.showDetailsOfPassenger(id);
+    linePrinter();
 }
 #endif

@@ -37,14 +37,15 @@ class Cruise{
         void display(){
             if(!isValid){
                 cout<<"The provided id is wrong!"<<endl;
+                linePrinter();
                 return;
             }
             cout<<"Cruise details:"<<endl;
             cout<<"id: "<<id<<endl;
-            cout<<"deptCity: "<<deptCity<<endl;
-            cout<<"deptTime: "<<deptTime<<endl;
-            cout<<"arrivalCity: "<<arrivalCity<<endl;
-            cout<<"arrivalTime: "<<arrivalTime<<endl;
+            cout<<"Depature city: "<<deptCity<<endl;
+            cout<<"Depature time: "<<deptTime<<endl;
+            cout<<"Arrival City: "<<arrivalCity<<endl;
+            cout<<"Arrival Time: "<<arrivalTime<<endl;
             this->accomodations.display();
             this->waitingList.display();
         }
@@ -52,19 +53,47 @@ class Cruise{
             accomodations.bookSeatForCruise(seatNum, userId);
         }
         void displayAvailableSeats(){
-            cout<<"Available seats information on the cruise with id: "<<cuserid<<endl;
+            linePrinter();
+            cout<<"Cruise id: "<<cuserid<<endl;
             int startOfEconomicClass = accomodations.getStartOfEconomicClass();
-            cout<<endl;
-            cout<<"Note: A - available, B - Booked"<<endl;
-            cout<<endl;
-            int index = 0;
-            for(bool status: accomodations.getTotalSeatsAllocation()){
-                if(index == startOfEconomicClass){
-                    cout<<endl<<"Economic Class:"<<endl;
-                }
-                cout<<"Seat Number: "+to_string(index + 1)<<(status?(" - B"): (" - A"))<<((index == startOfEconomicClass - 1)?". ":",");
-                index++;
+            cout<<"Business Class Seating Information:"<<endl<<endl;
+            for(int i=1;i<=accomodations.getStartOfEconomicClass();i++){
+                cout<<" "<<(i);
             }
+            cout<<endl;
+            for(int i=1;i<=accomodations.getStartOfEconomicClass();i++){
+                cout<<"+-";
+            }
+            cout<<"+"<<endl;
+            vector<bool> seatArrangements = accomodations.getTotalSeatsAllocation();
+            for(int i=1,j=0;i<=accomodations.getStartOfEconomicClass();i++){
+                cout<<"|"<<(seatArrangements[j++]?"B":"-");
+            }
+            cout<<"|"<<endl;
+            for(int i=1;i<=accomodations.getStartOfEconomicClass();i++){
+                cout<<"+-";
+            }
+            cout<<"+"<<endl;
+            linePrinter();
+            cout<<endl<<"Economic class seating information:"<<endl<<endl;
+
+            for(int i=accomodations.getStartOfEconomicClass()+1;i<=seatArrangements.size();i++){
+                cout<<" "<<(i);
+            }
+            cout<<endl;
+            for(int i=1;i<=accomodations.getStartOfEconomicClass();i++){
+                cout<<"+-";
+            }
+            cout<<"+"<<endl;
+            for(int i=accomodations.getStartOfEconomicClass();i<seatArrangements.size();i++){
+                cout<<"|"<<(seatArrangements[i]?"B":"-");
+            }
+            cout<<"|"<<endl;
+            for(int i=1;i<=accomodations.getStartOfEconomicClass();i++){
+                cout<<"+-";
+            }
+            cout<<"+"<<endl;
+            linePrinter();
         }
         int getEconomicSeatingStarting(){return accomodations.getStartOfEconomicClass();};
         bool checkSeatAvailability(int seatNumber){return accomodations.checkSeatAvailability(seatNumber);}
